@@ -1,5 +1,5 @@
-#ifndef UNI_FOLLOWERS.H
-#define UNI_FOLLOWERS.H
+#ifndef UNI_FOLLOWER.H
+#define UNI_FOLLOWER.H
 
 
 #include <iostream>
@@ -8,7 +8,7 @@
 using namespace std;
 
 //struct que representa a los usuarios que siguen distintas universidades
-struct uni_followers {
+struct uni_follower {
     long long int user_id; //único
     string username;    // único
     string university;
