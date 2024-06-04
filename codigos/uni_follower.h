@@ -1,6 +1,5 @@
-#ifndef UNI_FOLLOWER.H
-#define UNI_FOLLOWER.H
-
+#ifndef UNI_FOLLOWER_H
+#define UNI_FOLLOWER_H
 
 #include <iostream>
 #include <string>

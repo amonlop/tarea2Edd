@@ -1,18 +1,18 @@
-#ifndef HASHTABLEID_SEPARATECHAINING.H
-#define HASHTABLEID_SEPARATECHAINING.H
+#ifndef HASHTABLEID_SEPARATECHAINING_H
+#define HASHTABLEID_SEPARATECHAINING_H
 
 #include <iostream>
 #include <string>
-#include <uni_follower.h>
+#include "uni_follower.h"
 #include <vector>
 #include <unordered_map>
 
 using namespace std;
 
-//tabla hash con el ID encadenamiento separado
+//tabla hash utilizando la clave user_ID, con hashing abierto (encadenamiento separado)
 class HashTableID_separateChaining {
     private:
-        int size;
+        int size;                                                   // tamaño de la tabla
         vector<unordered_map<long long int, uni_follower>> table; //un unordered_map q simule una lista enlazada de par(clave, valor) dentro del vector principal
 
         //funcion hash h1
@@ -38,6 +38,7 @@ class HashTableID_separateChaining {
             if (it != table[index].end()) {
                 return &it->second;// si la encuentra, devuelve un puntero al valor
             }
+            cout << "Clave: " << key << " no encontrada" << endl;
             return nullptr;
         }
 
