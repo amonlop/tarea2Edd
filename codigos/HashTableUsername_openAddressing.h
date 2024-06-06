@@ -64,7 +64,7 @@ class HashTableUsername_openAddressing {
                 i++;
                 index = hashing_method(hash, size, i);
                 if (i >= size) { 
-                    cout << "Clave: " << key << " no encontrada" << endl;
+                    //cout << "Clave: " << key << " no encontrada" << endl;
                     return nullptr;
                 }
             }

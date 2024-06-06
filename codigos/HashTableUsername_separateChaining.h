@@ -53,7 +53,7 @@ class HashTableUsername_separateChaining {
                 return &it->second;// si la encuentra, devuelve un puntero al valor
             }
 
-            cout << "Clave: " << key << " no encontrada" << endl;
+            //cout << "Clave: " << key << " no encontrada" << endl;
             return nullptr;
         }
 

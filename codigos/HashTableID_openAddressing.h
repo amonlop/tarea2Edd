@@ -49,7 +49,7 @@ class HashTableID_openAddressing {
                 i++;
                 index = hashing_method(key, size, i);
                 if (i >= size) { 
-                    cout << "Clave: " << key << " no encontrada" << endl;
+                    //cout << "Clave: " << key << " no encontrada" << endl;
                     return nullptr;
                 }
             }
