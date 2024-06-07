@@ -22,6 +22,8 @@ for /L %%I in (1,1,50) do (
     test_search_username.exe cuadratic
     echo Test %%I with Chaining
     test_search_username.exe chaining
+    echo Test %%I with Unordered Map
+    test_search_username.exe unordered_map
 )
 
 endlocal

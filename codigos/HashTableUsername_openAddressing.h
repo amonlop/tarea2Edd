@@ -74,8 +74,15 @@ class HashTableUsername_openAddressing {
             return &table[index].second; //retorna un puntero al usuario encontrado
         }
 
-        int getSize() {
-            return size;
+
+        //método para calcular el tamaño en bytes de la estructura
+        size_t sizeInBytes() {
+            size_t size_vector = sizeof(table) + (table.capacity() * sizeof(pair<long long int, uni_follower>));
+            size_t size_elements = 0;
+            for (const auto& element : table) {
+                size_elements += sizeof(element.first) + sizeof(element.second);
+            }
+            return sizeof(*this) - sizeof(table) + size_vector + size_elements;
         }
 
 };

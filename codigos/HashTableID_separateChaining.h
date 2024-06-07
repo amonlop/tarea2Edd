@@ -21,6 +21,7 @@ class HashTableID_separateChaining {
         }
 
     public:
+        //constructor de la clase, recibe el tamaño de la tabla hash
         HashTableID_separateChaining(int size) : size(size) {
             table.resize(size);
         }
@@ -40,6 +41,16 @@ class HashTableID_separateChaining {
             }
             //cout << "Clave: " << key << " no encontrada" << endl;
             return nullptr;
+        }
+
+        //método para calcular el tamaño en bytes de la estructura
+        size_t sizeInBytes() {
+            size_t total_size = sizeof(*this); // tamaño base de la clase
+            total_size += table.capacity() * sizeof(unordered_map<long long int, uni_follower>); // tamaño del vector y su capacidad
+            for (const auto& chain : table) {
+                total_size += chain.size() * (sizeof(long long int) + sizeof(uni_follower)); // tamaño de las claves y valores en el unordered_map
+            }
+            return total_size;
         }
 
 };

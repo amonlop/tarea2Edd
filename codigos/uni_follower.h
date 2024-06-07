@@ -7,6 +7,7 @@
 using namespace std;
 
 //struct que representa a los usuarios que siguen distintas universidades
+//cada uni_follower representa una fila del dataset
 struct uni_follower {
     long long int user_id; //único
     string username;    // único

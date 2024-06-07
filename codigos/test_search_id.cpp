@@ -8,11 +8,12 @@
 #include "LoadCSV.h"
 #include "uni_follower.h"
 #include "FuncionesHash.h"
+#include "Unordered_m.h"
 #include <chrono>
 
 using namespace std;
 
-//50 llaves
+//50 llaves existentes y no existentes
 vector<long long int> existing_keys = {414942137, 995799091, 119157522, 107828392, 3157777815, 779200093, 105278779, 3342070079, 197969660, 1859685872, 3308253918, 3085046392, 99004019, 1326167888, 72700410, 344881817, 287800469, 1339542342, 3407892076, 2511129368, 1400303311, 116599554, 3355667831, 395065295, 69738118, 3413894967, 379371536, 15348330, 935258035, 383938430, 2707923709, 123270934, 36474946, 118517827, 2841970690, 199572311, 269403454, 4541323823, 370323325, 2901627227, 441350226, 98511849, 3852383297, 2541707748, 1111920254, 2526807700, 50704286, 401996629, 109476346, 461314902};
 
 vector<long long int> non_existing_keys = {123123123, 1231231, 12311, 390232, 390231, 390234, 390235, 390236, 390237, 390238, 390239, 121111, 121110, 121112, 121113, 121114, 121115, 121116, 121118, 12119, 222221, 222222, 222223, 222224, 222225, 222226, 222227, 222228, 222229, 222220, 12119, 222221, 222222, 222223, 222224, 222225, 222226, 222227, 222228, 222229, 222220, 123123123, 1231231, 12311, 390232, 390231, 390234, 390235, 390236, 390237};
@@ -33,7 +34,10 @@ double calc_tiempo_prom(HashTable& hashtable, vector<long long int> llaves) {
     return sum_tiempo;
 }
 
-
+//main que recibe argumentos al ejecutarse, para calcular el tiempo de búsqueda promedio de 50 datos. Se calcula el tiempo de ejecución (en nanosegundos) utilizando el user_id como clave
+/*
+    HashtableType: tipo de tabla hash a realizar búsquedas de elementos
+*/
 int main(int argc, char** argv) {
 
     //type_search es {1,0}, 1 para buscar usuarios existentes, 0 para buscar usuarios no existentes
@@ -43,11 +47,11 @@ int main(int argc, char** argv) {
     } 
 
     string tablaHash = argv[1];
-    int num_inserciones = 21500; //todos los usuarios
+    int num_inserciones = 21500; //número grande para insertar todos los usuarios
     int size = 25033; //tamaño tabla hash
 
-    double tiempo_existing;
-    double tiempo_non_existing;
+    double tiempo_existing; //tiempo que demora la estructura en consultar claves existentes
+    double tiempo_non_existing; //tiempo que demora la estructura en consultar claves no existentes
 
     if(tablaHash == "linear") {
         HashTableID_openAddressing tableLinear(size, FuncionesHash::linear_probing);
@@ -72,6 +76,12 @@ int main(int argc, char** argv) {
         loadCVS_ID("universities_followers.csv", tableChaining, num_inserciones);
         tiempo_existing = calc_tiempo_prom(tableChaining, existing_keys);
         tiempo_non_existing = calc_tiempo_prom(tableChaining, non_existing_keys);
+
+    } else if(tablaHash == "unordered_map") {
+        Unordered_m<long long int> mapa;
+        loadCVS_ID("universities_followers.csv", mapa, num_inserciones);
+        tiempo_existing = calc_tiempo_prom(mapa, existing_keys);
+        tiempo_non_existing = calc_tiempo_prom(mapa, non_existing_keys);
 
     } else {
         cout << "Ingrese un método válido " << endl;

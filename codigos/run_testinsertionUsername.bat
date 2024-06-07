@@ -10,7 +10,7 @@ if exist results_insertions_username.csv (
 )
 
 REM añadir encabezado de los campos al csv
-echo HashtableType;numInsertions;duration > results_insertions_username.csv
+echo HashtableType;numInsertions;duration(ms);size_bytes > results_insertions_username.csv
 
 REM Ejecutar pruebas 50 veces para diferentes cantidades de inserciones
 for /L %%I in (1,1,50) do (
@@ -23,6 +23,8 @@ for /L %%I in (1,1,50) do (
         test_insertion_username.exe cuadratic %%N
         echo Test %%I with %%N insertions on Separate Chaining
         test_insertion_username.exe chaining %%N
+        echo Test %%I with %%N insertions on Unordered Map
+        test_insertion_username.exe unordered_map %%N
     )
 )
 

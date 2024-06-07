@@ -8,9 +8,11 @@
 #include "LoadCSV.h"
 #include "uni_follower.h"
 #include "FuncionesHash.h"
+#include "Unordered_m.h"
 
 using namespace std;
 
+//main dedicado a testear (y debugear) búsquedas de datos de forma inicial, y el funcionamiento correcto de las tablasHash 
 int main() {
 
     int n_inserciones = 20000; //num inserciones inicial de usuarios
@@ -28,17 +30,17 @@ int main() {
     HashTableID_openAddressing tableDoubleHashing(25333, FuncionesHash::double_hashing);
 
 
-    loadCVS_ID("universities_followers.csv", tableDoubleHashing, n_inserciones);
+    // //ejemplo de búsqueda por ID
+    // loadCVS_ID("universities_followers.csv", tableDoubleHashing, n_inserciones);
 
-    //ejemplo de búsqueda por ID
-    double id = stod("762696222");
-    uni_follower* usuario = tableDoubleHashing.search(static_cast<long long int>(id));
+    // double id = stod("762696222");
+    // uni_follower* usuario = tableDoubleHashing.search(static_cast<long long int>(id));
 
-    if(usuario) {
-        cout << "Usuario encontrado: " << usuario->username << endl;
-    } else {
-        cout << "Usuario no encontrado" << endl; 
-    }
+    // if(usuario) {
+    //     cout << "Usuario encontrado: " << usuario->username << endl;
+    // } else {
+    //     cout << "Usuario no encontrado" << endl; 
+    // }
 
 
     // //ejemplo de búsqueda por username
@@ -53,6 +55,22 @@ int main() {
     // } else {
     //     cout << "Usuario: " << cadena << " no encontrado" << endl; 
     // }
+
+
+    //EJEMPLO DE BUSQUEDA POR unordered_map
+
+    Unordered_m<string> mapa_id;
+    loadCVS_Username("universities_followers.csv", mapa_id, 22000);
+    string cadena = "mariajosejana";
+    uni_follower* usuario = mapa_id.search(cadena);
+
+
+     if(usuario) {
+        cout << "Usuario encontrado: " << usuario->user_id << endl;
+    } else {
+        cout << "Usuario no encontrado" << endl; 
+    }
+
 
     return 0;
 

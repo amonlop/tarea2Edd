@@ -15,7 +15,12 @@
 
 
 template<typename HashTable>
-//funcion que carga el archivo csv en las tablas hash, utilizando el ID como clave, con un numero máximo de n_inserciones
+//funcion que carga el archivo csv en las tablas hash(o unordered_map), utilizando el ID como clave, con un numero máximo de n_inserciones
+/*
+    filename = nombre del archivo csv
+    hashtable = tabla hash o unordered_map para insertar datos
+    num_inserciones = numero de inserciones máximas de usuarios
+*/
 void loadCVS_ID(const string& filename, HashTable& hashtable, int num_inserciones) {
 
     ifstream file(filename);
@@ -63,7 +68,7 @@ void loadCVS_ID(const string& filename, HashTable& hashtable, int num_insercione
         // cout << "created_at: " << usuario.created_at << endl;
         i++;
     }
-    //cout << i << endl;
+    // cout << i << endl;
 
     file.close();
 }
@@ -71,6 +76,11 @@ void loadCVS_ID(const string& filename, HashTable& hashtable, int num_insercione
 
 template<typename HashTable>
 //funcion que carga el archivo csv en las tablas hash, utilizando el username como clave, con un número máximo n_inserciones de usuarios
+/*
+    filename = nombre del archivo csv
+    hashtable = tabla hash o unordered_map para insertar datos
+    num_inserciones = numero de inserciones máximas de usuarios
+*/
 void loadCVS_Username(const string& filename, HashTable& hashtable, int num_inserciones) {
 
     ifstream file(filename);

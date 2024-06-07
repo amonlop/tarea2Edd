@@ -10,7 +10,7 @@ if exist results_search_ID.csv (
 )
 
 REM añadir encabezado de los campos al csv
-echo HashtableType;avg_time_existing;avg_time_non_existing > results_search_ID.csv
+echo HashtableType;avg_time_existing(ns);avg_time_non_existing(ns) > results_search_ID.csv
 
 REM Ejecutar pruebas 50 veces para diferentes métodos
 for /L %%I in (1,1,50) do (
@@ -22,6 +22,8 @@ for /L %%I in (1,1,50) do (
     test_search_id.exe cuadratic
     echo Test %%I with Chaining
     test_search_id.exe chaining
+    echo Test %%I with Unordered Map
+    test_search_id.exe unordered_map
 )
 
 endlocal
